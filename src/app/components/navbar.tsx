@@ -1,64 +1,37 @@
-import react from "react";
+import { on } from "events";
 import BotonLink from "./BotonLink";
+import { Link } from "react-router-dom";
+interface BotonLinkProps {
+  onClack: any;
+}
 
-export default function SidebarAndContent() {
+const Navbar: React.FC<BotonLinkProps> = ({ onClack }) => {
   return (
-    <div className="flex flex-row relative z-20 h-full auto-cols-max justify-between">
-      <div className="flex flex-col z-20 relative w-full justify-between">
-
-        <div className="p-20 w-3/3">   
-             <div className="my-12">
-              <p className="text-white text-8xl text-bold subpixel-antialiased font-semibold">Welcome to Juan's happy <a className="underline decoration-sky-300">coding space</a></p>
-              </div>
-              <div className="my-20">
-               <p className="text-white text-6xl text-bold subpixel-antialiased font-medium">I'm a Software Engineer </p>
-              </div>
-
-        </div>
-
-          <div className=" flex p-20 spac">
-          <BotonLink
-          texto={"Contact me!"} />
-             <div className="w-16"></div>
-          <BotonLink
-          texto={" Proyects "} /> 
-          </div>
-
-      </div>
-
-      <div className="border border-white w-5/12 mx-24 mt-32 mb-24">
-            <p> My most recent project </p>
-
-      </div>  
-
-
-      <div className="flex flex-col z-20 backdrop-blur-sm border-white border-l h-full justify-between">
+    <div className="flex flex-col z-20 backdrop-blur-md border-white border-l h-full justify-between">
+      <button onClick={onClack}>
         <div className="transition ease-out delay-50  border-white p-10 border-b hover:bg-gray-800">
-          <button>
-            <svg
-              fill="#ffffff"
-              width="36"
-              height="36"
-              version="1.1"
-              id="lni_lni-chevron-left"
-              xmlns="http://www.w3.org/2000/svg"
-              x="0px"
-              y="0px"
-              viewBox="0 0 64 64"
-              className="enable-background:new 0 0 64 64;"
-            >
-              <g>
-                <path
-                  d="M43.3,57.3c-0.6,0-1.2-0.2-1.6-0.7l-22.6-23c-0.9-0.9-0.9-2.3,0-3.2l22.6-23c0.9-0.9,2.3-0.9,3.2,0c0.9,0.9,0.9,2.3,0,3.2
-          L23.9,32l21.1,21.4c0.9,0.9,0.9,2.3,0,3.2C44.4,57,43.9,57.3,43.3,57.3z"
-                />
-              </g>
-            </svg>
-          </button>
+          <svg
+            fill="#ffffff"
+            width="36"
+            height="36"
+            version="1.1"
+            id="lni_lni-chevron-right"
+            xmlns="http://www.w3.org/2000/svg"
+            x="0px"
+            y="0px"
+            viewBox="0 0 64 64"
+          >
+            <g>
+              <path
+                d="M20.7,57.3c-0.6,0-1.1-0.2-1.6-0.6c-0.9-0.9-0.9-2.3,0-3.2L40.1,32L19.1,10.6c-0.9-0.9-0.9-2.3,0-3.2
+		c0.9-0.9,2.3-0.9,3.2,0l22.6,23c0.9,0.9,0.9,2.3,0,3.2l-22.6,23C21.9,57,21.3,57.3,20.7,57.3z"
+              />
+            </g>
+          </svg>
         </div>
-
-        <div className="transition ease-out delay-50  flex border-y border-white justify-center p-10  hover:bg-gray-800">
-          <button>
+      </button>
+      <button>
+        <div className="transition ease-out flex border-y border-white justify-center p-10  hover:bg-gray-800">
           <svg
             fill="#ffffff"
             width="36"
@@ -75,12 +48,11 @@ export default function SidebarAndContent() {
             <path d="M9.6997 48.4002C7.9997 48.4002 6.2997 47.7002 5.0997 46.5002C3.4997 44.9002 2.7997 42.6002 3.2997 40.3002C3.9997 37.4002 6.6997 35.2002 9.8997 35.2002H13.9997C15.1997 35.2002 16.2997 36.2002 16.2997 37.5002V41.6002C16.2997 44.8002 14.1997 47.6002 11.2997 48.3002C10.6997 48.3002 10.1997 48.4002 9.6997 48.4002ZM9.8997 39.7002C8.7997 39.7002 7.8997 40.4002 7.6997 41.3002C7.4997 42.1002 7.6997 42.8002 8.2997 43.3002C8.7997 43.8002 9.4997 44.0002 10.1997 43.8002C11.0997 43.6002 11.6997 42.6002 11.6997 41.5002V39.7002H9.8997Z" />
             <path d="M43.3008 62.2004C42.8008 62.2004 42.3008 62.1004 41.8008 62.0004C38.9008 61.3004 36.8008 58.5004 36.8008 55.3004V51.2004C36.8008 50.0004 37.8008 48.9004 39.1008 48.9004H43.2008C46.4008 48.9004 49.1008 51.0004 49.8008 54.0004C50.3008 56.3004 49.7008 58.6004 48.0008 60.2004C46.7008 61.6004 45.0008 62.2004 43.3008 62.2004ZM41.3008 53.6004V55.4004C41.3008 56.5004 42.0008 57.5004 42.8008 57.7004C43.5008 57.9004 44.2008 57.7004 44.7008 57.2004C45.2008 56.7004 45.4008 55.9004 45.3008 55.2004C45.1008 54.3004 44.1008 53.6004 43.1008 53.6004H41.3008Z" />
           </svg>
-          </button>
-
         </div>
-
-        <div className="py-24"></div>
-      </div>
+      </button>
+      <div className="py-24"></div>
     </div>
   );
-}
+};
+
+export default Navbar;
