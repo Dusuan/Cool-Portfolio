@@ -3,12 +3,13 @@ import BotonLink from "./BotonLink";
 import { Link } from "react-router-dom";
 interface BotonLinkProps {
   onClack: any;
+  state: boolean;
 }
 
-const Navbar: React.FC<BotonLinkProps> = ({ onClack }) => {
+const Navbar: React.FC<BotonLinkProps> = ({ onClack, state }) => {
   return (
-    <div className="flex flex-col z-20 backdrop-blur-md border-white border-l h-full justify-between">
-      <button onClick={onClack}>
+    <div className="flex flex-col z-20 border-white border-l h-full justify-between">
+      <button onClick={() => onClack(!state)}>
         <div className="transition ease-out delay-50  border-white p-10 border-b hover:bg-gray-800">
           <svg
             fill="#ffffff"
